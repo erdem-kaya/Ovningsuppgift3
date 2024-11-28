@@ -1,5 +1,6 @@
 ﻿using Bussiness.Dtos;
 using Bussiness.Factories;
+using Bussiness.Helpers;
 using Bussiness.Services;
 
 namespace MainApp.Services
@@ -56,8 +57,21 @@ namespace MainApp.Services
             Console.Write("Enter your last name: ");
             user.LastName = Console.ReadLine();
 
-            Console.Write("Enter your email: ");
-            user.Email = Console.ReadLine();
+
+            while (true)
+            {
+                Console.Write("Enter your email: ");
+                user.Email = Console.ReadLine();
+
+                if (RegularEmailFormat.IsValidEmail(user.Email))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid email. Please try again.");
+                }
+            }
 
             //Validate user password and confirm password match
             while (true)
